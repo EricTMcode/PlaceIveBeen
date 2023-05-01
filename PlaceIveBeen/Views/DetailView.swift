@@ -33,7 +33,8 @@ struct DetailView: View {
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Save") {
-                    
+                    placeVM.savePlace(place: place)
+                    dismiss()
                 }
             }
         }

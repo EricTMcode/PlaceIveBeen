@@ -17,4 +17,10 @@ class PlaceViewModel: ObservableObject {
             placesArray.append(Place(id: UUID().uuidString, city: place))
         }
     }
+    
+    func savePlace(place: Place) {
+        var newPlace = place
+        newPlace.id = UUID().uuidString
+        placesArray.append(newPlace)
+    }
 }
