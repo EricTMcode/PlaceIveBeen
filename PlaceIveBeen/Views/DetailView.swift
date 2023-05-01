@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DetailView: View {
     @EnvironmentObject var placeVM: PlaceViewModel
+    @Environment(\.dismiss) var dismiss
     @State var place: Place
     
     var body: some View {
@@ -24,12 +25,26 @@ struct DetailView: View {
         }
         .padding()
         .font(.title)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button("Cancel") {
+                    dismiss()
+                }
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button("Save") {
+                    
+                }
+            }
+        }
     }
 }
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(place: Place(city: "Timbuktu"))
-            .environmentObject(PlaceViewModel())
+        NavigationStack {
+            DetailView(place: Place(city: "Timbuktu"))
+                .environmentObject(PlaceViewModel())
+        }
     }
 }
