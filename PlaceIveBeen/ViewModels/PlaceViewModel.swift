@@ -19,8 +19,14 @@ class PlaceViewModel: ObservableObject {
     }
     
     func savePlace(place: Place) {
-        var newPlace = place
-        newPlace.id = UUID().uuidString
-        placesArray.append(newPlace)
+        if place.id == nil {
+            var newPlace = place
+            newPlace.id = UUID().uuidString
+            placesArray.append(newPlace)
+        } else {
+            if let index = placesArray.firstIndex(where: { $0.id == place.id }) {
+                placesArray[index] = place
+            }
+        }
     }
 }
