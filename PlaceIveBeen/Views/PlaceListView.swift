@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PlaceListView: View {
     @EnvironmentObject var placeVM: PlaceViewModel
+    @State private var sheetIsPresented = false
     
     var body: some View {
         NavigationStack {
@@ -36,10 +37,15 @@ struct PlaceListView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        
+                        sheetIsPresented.toggle()
                     } label: {
                         Image(systemName: "plus")
                     }
+                }
+            }
+            .sheet(isPresented: $sheetIsPresented) {
+                NavigationStack {
+                    DetailView(place: Place())
                 }
             }
         }
