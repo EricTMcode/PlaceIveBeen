@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct PlaceIveBeenApp: App {
+    @StateObject var placeVM = PlaceViewModel()
     var body: some Scene {
         WindowGroup {
             PlaceListView()
+                .environmentObject(placeVM)
         }
     }
 }

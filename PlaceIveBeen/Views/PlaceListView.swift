@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct PlaceListView: View {
-    
+    @EnvironmentObject var placeVM: PlaceViewModel
     
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
                 List {
-                    ForEach(places, id: \.self) { place in
+                    ForEach(placeVM.placesArray) { place in
                         NavigationLink {
-                            DetailView(placeName: place)
+                            DetailView(place: place)
                         } label: {
                             HStack {
                                 Image(systemName: "mappin.and.ellipse")
                                     .foregroundColor(.blue)
-                                Text(place)
+                                Text(place.city)
                             }
                         }
                     }
@@ -37,5 +37,6 @@ struct PlaceListView: View {
 struct PlaceListView_Previews: PreviewProvider {
     static var previews: some View {
         PlaceListView()
+            .environmentObject(PlaceViewModel())
     }
 }

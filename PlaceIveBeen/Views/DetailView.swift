@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct DetailView: View {
-    @State var placeName: String
+    @EnvironmentObject var placeVM: PlaceViewModel
+    @State var place: Place
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -16,7 +17,7 @@ struct DetailView: View {
                 .font(.title)
                 .bold()
             
-            TextField("Enter place name", text: $placeName)
+            TextField("Enter place name", text: $place.city)
                 .textFieldStyle(.roundedBorder)
             
             Spacer()
@@ -28,6 +29,7 @@ struct DetailView: View {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(placeName: "Timbuktu")
+        DetailView(place: Place(city: "Timbuktu"))
+            .environmentObject(PlaceViewModel())
     }
 }
