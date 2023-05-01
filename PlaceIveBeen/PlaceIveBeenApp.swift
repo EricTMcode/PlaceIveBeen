@@ -11,7 +11,7 @@ import SwiftUI
 struct PlaceIveBeenApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            PlaceListView()
         }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  PlaceListView.swift
 //  PlaceIveBeen
 //
 //  Created by Eric on 01/05/2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct PlaceListView: View {
     @State private var places = ["Istanbul", "Valletta", "Palermo", "Vatican City", "San Marino", "Zurich"]
     
     var body: some View {
@@ -15,10 +15,14 @@ struct ContentView: View {
             VStack(alignment: .leading) {
                 List {
                     ForEach(places, id: \.self) { place in
-                        HStack {
-                            Image(systemName: "mappin.and.ellipse")
-                                .foregroundColor(.blue)
-                            Text(place)
+                        NavigationLink {
+                            DetailView(placeName: place)
+                        } label: {
+                            HStack {
+                                Image(systemName: "mappin.and.ellipse")
+                                    .foregroundColor(.blue)
+                                Text(place)
+                            }
                         }
                     }
                 }
@@ -30,8 +34,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct PlaceListView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        PlaceListView()
     }
 }
