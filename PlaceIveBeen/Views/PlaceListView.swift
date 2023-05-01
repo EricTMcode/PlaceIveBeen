@@ -30,6 +30,18 @@ struct PlaceListView: View {
             .font(.title2)
             .listStyle(.plain)
             .navigationTitle("Places I've Been:")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    EditButton()
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
         }
     }
 }
