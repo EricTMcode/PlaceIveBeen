@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PlaceListView: View {
-    @State private var places = ["Istanbul", "Valletta", "Palermo", "Vatican City", "San Marino", "Zurich"]
+    
     
     var body: some View {
         NavigationStack {
