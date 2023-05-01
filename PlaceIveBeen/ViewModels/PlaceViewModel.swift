@@ -28,13 +28,29 @@ class PlaceViewModel: ObservableObject {
                 placesArray[index] = place
             }
         }
+        saveData()
     }
     
     func deletePlace(indexSet: IndexSet) {
         placesArray.remove(atOffsets: indexSet)
+        saveData()
     }
     
     func movePlace(fromOffsets: IndexSet, toOffset: Int) {
         placesArray.move(fromOffsets: fromOffsets, toOffset: toOffset)
+        saveData()
+    }
+    
+    //MARK: - Document Directory
+    
+    let path = URL.documentsDirectory.appending(component: "placesArray")
+    
+    func saveData() {
+        let data = try? JSONEncoder().encode(placesArray)
+        do {
+            try data?.write(to: path)
+        } catch {
+            print("😡 ERROR: Could not save data \(error.localizedDescription)")
+        }
     }
 }
