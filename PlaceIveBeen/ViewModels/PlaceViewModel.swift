@@ -11,11 +11,7 @@ class PlaceViewModel: ObservableObject {
     @Published var placesArray: [Place] = []
 
     init() {
-        let places = ["Istanbul", "Valletta", "Palermo", "Vatican City", "San Marino", "Zurich"]
-        
-        for place in places {
-            placesArray.append(Place(id: UUID().uuidString, city: place))
-        }
+        loadData()
     }
     
     func savePlace(place: Place) {
@@ -51,6 +47,15 @@ class PlaceViewModel: ObservableObject {
             try data?.write(to: path)
         } catch {
             print("😡 ERROR: Could not save data \(error.localizedDescription)")
+        }
+    }
+    
+    func loadData() {
+        guard let data = try? Data(contentsOf: path) else { return }
+        do {
+            placesArray = try JSONDecoder().decode([Place].self, from: data)
+        } catch {
+            print("😡 ERROR: Could not load data \(error.localizedDescription)")
         }
     }
 }
