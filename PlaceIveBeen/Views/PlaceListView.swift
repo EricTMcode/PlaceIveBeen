@@ -26,6 +26,8 @@ struct PlaceListView: View {
                             }
                         }
                     }
+                    .onDelete(perform: placeVM.deletePlace)
+                    .onMove(perform: placeVM.movePlace)
                 }
             }
             .font(.title2)

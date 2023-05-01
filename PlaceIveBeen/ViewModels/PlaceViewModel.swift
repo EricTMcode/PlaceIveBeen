@@ -29,4 +29,12 @@ class PlaceViewModel: ObservableObject {
             }
         }
     }
+    
+    func deletePlace(indexSet: IndexSet) {
+        placesArray.remove(atOffsets: indexSet)
+    }
+    
+    func movePlace(fromOffsets: IndexSet, toOffset: Int) {
+        placesArray.move(fromOffsets: fromOffsets, toOffset: toOffset)
+    }
 }
